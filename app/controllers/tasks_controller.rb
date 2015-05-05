@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :change]
 
   # GET /tasks
   # GET /tasks.json
@@ -62,6 +62,11 @@ class TasksController < ApplicationController
       format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
+  
+  def change
+    @task.update_attributes(state: params[:state])
+    respond_to do |format|
+      format.html {redirect_to tasks_path, notice: "Task Update"}
   end
 
   private
@@ -73,5 +78,5 @@ class TasksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:content, :state)
-    end
 end
+  
