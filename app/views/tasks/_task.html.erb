@@ -1,27 +1,10 @@
-<!--
-<tr>
-	<td><%= task.content %></td>
-	<td><%= task.state %></td>
-	<td><%= link_to 'Show', task %></td>
-	<td><%= link_to 'Edit', edit_task_path(task) %></td>
-	<td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	<% if task.state == "doing" %>
-	<td><%= link_to "Mark as To Do", change_task_path(task, state: "to_do"), method: :put %></td>
-	<td><%= link_to "Mark as Done", change_task_path(task, state: "done"), method: :put %></td>
-	<% else %>
-	<td><%= link_to "Mark as Doing", change_task_path(task, state: "doing"), method: :put %></td>
-	<% end %>
-</tr>
--->
-
-
-
-
 <div class="panel panel-info">
 	<div class="panel-heading">
 	<%= link_to edit_task_path(task) do %>
 	created <%= time_ago_in_words(task.created_at) %> ago
 	<% end %>
+
+	<%= link_to "x", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %>
 	</div>
 	<div class="panel-body"><%= task.content %></div>
 
